@@ -29,5 +29,8 @@ typedef struct
 
 population* create_population(int pop_size, int bit_count, int data_count);
 void free_population(population *pop);
+int min(int a, int b);
+int rand_between(population *pop);
+void rand_population(population *pop);
 
 #endif

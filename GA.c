@@ -32,3 +32,34 @@ void free_population(population *pop)
   free(pop->ivd);
   free(pop);
 }
+
+int min(int a, int b)
+{
+  return (a<b) ? a:b;
+}
+
+int rand_between(int a, int b)
+{
+  int delta, randnum;
+
+  delta = abs(a-b)+1;
+  randnum = rand()%delta;
+
+  return (min(a,b)+randnum);
+}
+
+void rand_population(population *pop)
+{
+  int i;
+  int pos;
+
+  srand(time(NULL));
+
+  for(i=0; i<pop->pop_size;i++)
+  {
+    for(pos=0; pos<pop->bit_count; pos++)
+    {
+      pop->ivd[i].crms[pos] = rand_between(0,1);
+    }
+  }
+}
