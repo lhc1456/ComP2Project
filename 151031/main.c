@@ -13,8 +13,6 @@ main()
 
   for(i=0; i<pop_size; i++)
   {
-    printf("%2d번째 individual 주소 : %p ", i, &pop->ivd[i]);
-    printf("chromosome 주소 : %p\n", pop->ivd[i].crms);
   }
 
   free_population(pop);
