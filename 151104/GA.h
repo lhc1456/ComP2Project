@@ -80,6 +80,7 @@ void rand_population(population *pop)
   int i;
   int pos;
   int j, k;
+  int check = 0;
 
   srand(time(NULL));
 
@@ -87,6 +88,7 @@ void rand_population(population *pop)
   {
     for(pos=0; pos<pop->bit_count; pos++)
     {
+      check = 0;
       pop->ivd[i].crms[pos] = rand_between(0,14);
       for(j=0; j<pop->pop_size; j++)
       {
@@ -94,9 +96,18 @@ void rand_population(population *pop)
 	{
           if(pop->ivd[i].crms[pos] == pop->ivd[j].crms[k])
 	  {
-	    continue;
+	    check = 1;
+	    break;
 	  }
 	}
+	if(check == 1)
+	{
+	  break;
+	}
+      }
+      if(check == 1)
+      {
+        continue;
       }
     }
   }
