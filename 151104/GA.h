@@ -107,7 +107,7 @@ void rand_population(population *pop)
       }
       if(check == 1)
       {
-        continue;
+        pos--;
       }
     }
   }
