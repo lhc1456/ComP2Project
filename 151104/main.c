@@ -21,7 +21,7 @@ main()
       {
         printf(" ");
       }
-      printf("%d", pop->ivd[i].crms[j]);
+      printf("%2d", pop->ivd[i].crms[j]);
     }
     printf("\n");
   }
