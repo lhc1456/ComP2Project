@@ -94,6 +94,7 @@ void rand_population(population *pop)
         {
           if(pop->ivd[i].crms[pos] == pop->ivd[j].crms[k])
   	  {
+	    pos--;
 	    continue;
     	  }
 	  k++;
