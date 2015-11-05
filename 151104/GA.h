@@ -27,6 +27,7 @@ typedef struct
   int data_count;//염색체 내의 데이터 수
 }population;
 
+/*개체군 생성 : 메모리를 할당하고 리턴해줍니다.*/
 population* create_population(int pop_size, int bit_count, int data_count)
 {
   int i;
@@ -48,6 +49,7 @@ population* create_population(int pop_size, int bit_count, int data_count)
   return pop;
 }
 
+/*개체군의 메모리를 해제합니다.*/
 void free_population(population *pop)
 {
   int i;
@@ -60,11 +62,13 @@ void free_population(population *pop)
   free(pop);
 }
 
+/*a와 b사이의 작은 값을 리턴합니다.*/
 int min(int a, int b)
 {
   return (a<b) ? a:b;
 }
 
+/*a와 b사이에 존재하는 수 하나를 랜덤하게 추출합니다.*/
 int rand_between(int a, int b)
 {
   int delta, randnum;
@@ -75,12 +79,11 @@ int rand_between(int a, int b)
   return (min(a,b)+randnum);
 }
 
+/*개체들의 염색체를 랜덤하게 초기화합니다.*/
 void rand_population(population *pop)
 {
   int i;
   int pos;
-  int j, k;
-  int check;
 
   srand(time(NULL));
 
@@ -90,27 +93,6 @@ void rand_population(population *pop)
     {
       check = 0;
       pop->ivd[i].crms[pos] = rand_between(0,14);
-      while(j<15)
-      {
-        while(k<15)
-        {
-          if(pop->ivd[i].crms[pos] == pop->ivd[j].crms[k])
-  	  {
-	    check = 1;
-	    break;
-    	  }
-	  k++;
-        }
-	if(check == 1)
-	{
-	  break;
-	}
-	j++;
-      }
-      if(check == 1)
-      {
-        pos--;
-      }
     }
   }
 }
