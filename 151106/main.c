@@ -58,6 +58,7 @@ main()
 
     printf("%d %d\n", avg_x, avg_y);
 
+    printf("-9999입력시 종료\n");
     printf("x : ");
     scanf("%d", &x);
     if(x == -9999)
