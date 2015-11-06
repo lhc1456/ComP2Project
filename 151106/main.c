@@ -122,8 +122,8 @@ main()
       }
       printf("\n");
     }
-    printf("\n");
-  }*/
+    printf("\n");*/
+  }
   free_population(pop);
 
   printf("아무키나누르십시오...");getch();
