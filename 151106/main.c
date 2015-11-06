@@ -19,7 +19,7 @@ main()
   while(1)
   {
     sum_x = 0; sum_y = 0;
-    if(!check)
+    if(check == 0 || check ==1)
     {
       rand_population(pop);//랜덤으로 개체군의 염색체 값 초기화
     }
@@ -64,6 +64,7 @@ main()
     if(x<0 || x>14)
     {
       printf("ERROR\n");
+      check = 2;
       continue;
     }
     printf("y : ");
@@ -72,12 +73,14 @@ main()
     if(y<0 || y>14)
     {
       printf("ERROR\n");
+      check = 2;
       continue;
     }
 
     if(avg_x == x && avg_y == y)
     {
       printf("ERROR\n");
+      check = 2;
       continue;
     }
 
@@ -89,16 +92,16 @@ main()
         if(board[y][x] == 'X' || board[y][x] == 'O')
 	{
 	  printf("ERROR\n");
-	  check = 1;
+	  check = 2;
 	  break;
 	}
       }
-      if(check == 1)
+      if(check == 2)
       {
       	break;
       }
     }
-    if(check == 1)
+    if(check == 2)
     {
       continue;
     }
