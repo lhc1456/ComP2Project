@@ -150,6 +150,7 @@ void play_board(population *pop, int (*board)[15])
   int i, j;
   int x, y;
   int check = 0;
+  int sum_x, sum_y, avg_x, avg_y;
 
   while(1)
   {
@@ -161,7 +162,7 @@ void play_board(population *pop, int (*board)[15])
 
     //display_population(pop);//개체군의 염색체 값 출력
 
-    if(check == 0)
+    if(check == 0 || check == 1)
     {
       printf("-9999입력시 종료\n");
       printf("x : ");
@@ -200,29 +201,30 @@ void play_board(population *pop, int (*board)[15])
           if(board[y][x] == 'X' || board[y][x] == 'O')
           {
             printf("ERROR\n");
-            check = 2;//입력한 값이 판 위에 존재한다면 check를 2로 주고 다시 반복문을 시행한다.
+	    printf("%d %d\n", avg_x, avg_y);
+            check = 1;//입력한 값이 판 위에 존재한다면 check를 2로 주고 다시 반복문을 시행한다.
             break;
           }
         }
-        if(check == 2)
+        if(check == 1)
         {
           break;
         }
       }
-      if(check == 2)
+      if(check == 1)
       {
         continue;
       }
     }
 
-    for(i=0; i<pop_size; i++)
+    for(i=0; i<pop->pop_size; i++)
     {
       sum_x += pop->ivd[i].crms[0];
       sum_y += pop->ivd[i].crms[1];
     }
 
-    avg_x = sum_x / pop_size;
-    avg_y = sum_y / pop_size;
+    avg_x = sum_x / pop->pop_size;
+    avg_y = sum_y / pop->pop_size;
 
     for(i=0; i<15; i++)
     {
@@ -247,7 +249,7 @@ void play_board(population *pop, int (*board)[15])
 
     if(avg_x == x && avg_y == y)
     {
-      check = 2;//컴퓨터의 값과 겹치는 경우 check를 2로 주며 다시 반복문을 시행한다.
+      check = 1;//컴퓨터의 값과 겹치는 경우 check를 2로 주며 다시 반복문을 시행한다.
       continue;
     }
 
