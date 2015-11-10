@@ -124,7 +124,7 @@ void mutate(chromosome *crms, int bit_count)
   {
     if(rand_between(0, 300) == 0)
     {
-      crms[i] ^= 15;
+      crms[i] ^= 14;
     }
   }
 }
