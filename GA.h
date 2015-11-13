@@ -27,7 +27,7 @@ typedef struct
   int data_count;//염색체 내의 데이터 수
 }population;
 
-/*개체군 생성 : 메모리를 할당하고 리턴해줍니다.*/
+/*개체군 생성 : 메모리를 할당하고 리턴해줍니다. make : 151030*/
 population* create_population(int pop_size, int bit_count, int data_count)
 {
   int i;
@@ -49,7 +49,7 @@ population* create_population(int pop_size, int bit_count, int data_count)
   return pop;
 }
 
-/*개체군의 메모리를 해제합니다.*/
+/*개체군의 메모리를 해제합니다. make : 151030*/
 void free_population(population *pop)
 {
   int i;
@@ -62,13 +62,13 @@ void free_population(population *pop)
   free(pop);
 }
 
-/*a와 b사이의 작은 값을 리턴합니다.*/
+/*a와 b사이의 작은 값을 리턴합니다. make : 151031*/
 int min(int a, int b)
 {
   return (a<b) ? a:b;
 }
 
-/*a와 b사이에 존재하는 수 하나를 랜덤하게 추출합니다.*/
+/*a와 b사이에 존재하는 수 하나를 랜덤하게 추출합니다. make : 151031*/
 int rand_between(int a, int b)
 {
   int delta, randnum;
@@ -79,7 +79,7 @@ int rand_between(int a, int b)
   return (min(a,b)+randnum);
 }
 
-/*개체들의 염색체를 랜덤하게 초기화합니다.*/
+/*개체들의 염색체를 랜덤하게 초기화합니다. make : 151031*/
 void rand_population(population *pop)
 {
   int i;
@@ -96,7 +96,7 @@ void rand_population(population *pop)
   }
 }
 
-/*개체군의 개체들 값을 전부 출력합니다.*/
+/*개체군의 개체들 값을 전부 출력합니다. make: 151105*/
 void display_population(population *pop)
 {
   int i, j;
@@ -115,7 +115,7 @@ void display_population(population *pop)
   }
 }
 
-/*돌연변이, XOR연산으로 값을 뒤바꾸어 준다.*/
+/*돌연변이, XOR연산으로 값을 뒤바꾸어 준다. make : 151107*/
 void mutate(chromosome *crms, int bit_count)
 {
   int i;
@@ -129,6 +129,7 @@ void mutate(chromosome *crms, int bit_count)
   }
 }
 
+/*적응도 함수로 개체에 적응도를 더해줍니다. make : 151108*/
 void fitness_func(population *pop, int x, int y)
 {
   int i;
@@ -144,7 +145,7 @@ void fitness_func(population *pop, int x, int y)
   }
 }
 
-/*플레이어와 컴퓨터가 순서대로 돌을 둔다*/
+/*플레이어와 컴퓨터가 순서대로 돌을 둔다. make : 151109*/
 void play_board(population *pop, int (*board)[15])
 {
   int i, j;
@@ -279,7 +280,7 @@ void play_board(population *pop, int (*board)[15])
   }
 }
 
-/*교배할 개체 선택*/
+/*교배할 개체 선택한다. make : 151111*/
 individual* select_individual(population *pop)
 {
   unsigned int index1, index2;
@@ -316,5 +317,26 @@ individual* select_individual(population *pop)
     return &pop->ivd[index2];
   }
 }
+
+/*두 개의 염색체를 교배하여 새로운 두 개의 염색체로 만듭니다.*/
+void crossover(chromosome *old_c1, chromosome *old_c2, chromosome *new_c1, chromosome *new_c2, int bit_count)
+{
+  int i,
+      pos;
+
+//염색체의 데이터를 복제합니다.
+  for(i=0; i<bit_count; i++)
+  {
+    new_c1[i] = old_c2[i];
+    new_c2[i] = old_c1[i];
+  }
+//교배할 위치를 선택합니다.
+  pos = rand_between(0, bit_count-1);
+//특정 위치(pos)의 데이터를 교배합니다.
+  new_c1[pos] = old_c1[pos];
+  new_c2[pos] = old_c2[pos];
+}
+
+/*두 개체를 교배 또는 돌연변이를 가미해서 배양합니다.*/
 
 #endif
