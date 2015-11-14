@@ -8,26 +8,26 @@
 
 typedef int bit;
 
-/*ì—¼ìƒ‰ì²´*/
+/*¿¿¿*/
 typedef bit chromosome;
 
-/*ê°œì²´*/
+/*¿¿*/
 typedef struct
 {
   chromosome *crms;
-  double fitness;//ì ì‘ë„
+  double fitness;//¿¿¿
 }individual;
 
-/*ê°œì²´êµ°*/
+/*¿¿¿*/
 typedef struct
 {
   individual *ivd;
-  int pop_size;//ê°œì²´ ìˆ˜
-  int bit_count;//ì—¼ìƒ‰ì²´ì˜ ë¹„íŠ¸ ìˆ˜
-  int data_count;//ì—¼ìƒ‰ì²´ ë‚´ì˜ ë°ì´í„° ìˆ˜
+  int pop_size,//¿¿ ¿
+      bit_count,//¿¿¿¿ ¿¿ ¿
+      data_count;//¿¿¿ ¿¿ ¿¿¿ ¿
 }population;
 
-/*ê°œì²´êµ° ìƒì„± : ë©”ëª¨ë¦¬ë¥¼ í• ë‹¹í•˜ê³  ë¦¬í„´í•´ì¤ë‹ˆë‹¤.*/
+/*¿¿¿ ¿¿ : ¿¿¿¿ ¿¿¿¿ ¿¿¿¿¿¿. make : 151030*/
 population* create_population(int pop_size, int bit_count, int data_count)
 {
   int i;
@@ -49,7 +49,7 @@ population* create_population(int pop_size, int bit_count, int data_count)
   return pop;
 }
 
-/*ê°œì²´êµ°ì˜ ë©”ëª¨ë¦¬ë¥¼ í•´ì œí•©ë‹ˆë‹¤.*/
+/*¿¿¿¿ ¿¿¿¿ ¿¿¿¿¿. make : 151030*/
 void free_population(population *pop)
 {
   int i;
@@ -62,13 +62,13 @@ void free_population(population *pop)
   free(pop);
 }
 
-/*aì™€ bì‚¬ì´ì˜ ì‘ì€ ê°’ì„ ë¦¬í„´í•©ë‹ˆë‹¤.*/
+/*a¿ b¿¿¿ ¿¿ ¿¿ ¿¿¿¿¿. make : 151031*/
 int min(int a, int b)
 {
   return (a<b) ? a:b;
 }
 
-/*aì™€ bì‚¬ì´ì— ì¡´ì¬í•˜ëŠ” ìˆ˜ í•˜ë‚˜ë¥¼ ëœë¤í•˜ê²Œ ì¶”ì¶œí•©ë‹ˆë‹¤.*/
+/*a¿ b¿¿¿ ¿¿¿¿ ¿ ¿¿¿ ¿¿¿¿ ¿¿¿¿¿. make : 151031*/
 int rand_between(int a, int b)
 {
   int delta, randnum;
@@ -79,7 +79,7 @@ int rand_between(int a, int b)
   return (min(a,b)+randnum);
 }
 
-/*ê°œì²´ë“¤ì˜ ì—¼ìƒ‰ì²´ë¥¼ ëœë¤í•˜ê²Œ ì´ˆê¸°í™”í•©ë‹ˆë‹¤.*/
+/*¿¿¿¿ ¿¿¿¿ ¿¿¿¿ ¿¿¿¿¿¿. make : 151031*/
 void rand_population(population *pop)
 {
   int i;
@@ -96,7 +96,7 @@ void rand_population(population *pop)
   }
 }
 
-/*ê°œì²´êµ°ì˜ ê°œì²´ë“¤ ê°’ì„ ì „ë¶€ ì¶œë ¥í•©ë‹ˆë‹¤.*/
+/*¿¿¿¿ ¿¿¿ ¿¿ ¿¿ ¿¿¿¿¿. make: 151105*/
 void display_population(population *pop)
 {
   int i, j;
@@ -115,7 +115,7 @@ void display_population(population *pop)
   }
 }
 
-/*ëŒì—°ë³€ì´, XORì—°ì‚°ìœ¼ë¡œ ê°’ì„ ë’¤ë°”ê¾¸ì–´ ì¤€ë‹¤.*/
+/*¿¿¿¿ : XOR¿¿¿¿ ¿¿ ¿¿¿¿ ¿¿. make : 151107*/
 void mutate(chromosome *crms, int bit_count)
 {
   int i;
@@ -129,6 +129,7 @@ void mutate(chromosome *crms, int bit_count)
   }
 }
 
+/*¿¿¿ ¿¿ : ¿¿¿ ¿¿¿¿ ¿¿¿¿. make : 151108*/
 void fitness_func(population *pop, int x, int y)
 {
   int i;
@@ -144,38 +145,38 @@ void fitness_func(population *pop, int x, int y)
   }
 }
 
-/*í”Œë ˆì´ì–´ì™€ ì»´í“¨í„°ê°€ ìˆœì„œëŒ€ë¡œ ëŒì„ ë‘”ë‹¤*/
+/*¿¿¿¿¿ ¿¿¿¿ ¿¿¿¿ ¿¿ ¿¿¿. make : 151109*/
 void play_board(population *pop, int (*board)[15])
 {
-  int i, j;
-  int x, y;
-  int check = 0;
-  int sum_x, sum_y, avg_x, avg_y;
+  int i, j,
+      x, y,
+      check = 0,
+      sum_x, sum_y, avg_x, avg_y;
 
   while(1)
   {
     sum_x = 0; sum_y = 0;
-    if(check == 0 || check == 2)//0ê³¼ 1ì´ì™¸ì˜ ê°’ì¼ë•Œì—ëŠ” ì—¼ìƒ‰ì²´ ê°’ì„ ì´ˆê¸°í™” í•˜ì§€ ì•ŠëŠ”ë‹¤.
+    if(check == 0 || check == 2)//0¿ 2¿ ¿¿¿¿¿ ¿¿¿ ¿¿ ¿¿¿¿¿¿.
     {
-      rand_population(pop);//ëœë¤ìœ¼ë¡œ ê°œì²´êµ°ì˜ ì—¼ìƒ‰ì²´ ê°’ ì´ˆê¸°í™”
+      rand_population(pop);//¿¿¿¿ ¿¿¿ ¿ ¿¿¿¿ ¿¿¿
     }
 
-    //display_population(pop);//ê°œì²´êµ°ì˜ ì—¼ìƒ‰ì²´ ê°’ ì¶œë ¥
+    //display_population(pop);//¿¿¿¿ ¿¿¿ ¿ ¿¿
 
     if(check == 0 || check == 1)
     {
-      printf("-9999ì…ë ¥ì‹œ ì¢…ë£Œ\n");
+      printf("-9999¿¿¿ ¿¿\n");
       printf("x : ");
       scanf("%d", &x);
       if(x == -9999)
       {
-        printf("ì¢…ë£Œí•©ë‹ˆë‹¤\n");
+        printf("¿¿¿¿¿.\n");
         break;
       }
       if(x<0 || x>14)
       {
         printf("ERROR\n");
-        check = 2;//ë²”ìœ„ë¥¼ ë„˜ê²¼ì„ ê²½ìš° checkë¥¼ 2ë¡œ ì£¼ë©° ë‹¤ì‹œ ë°˜ë³µë¬¸ì„ ì‹œí–‰í•œë‹¤.
+        check = 2;//¿¿¿ ¿¿¿ ¿¿ ¿¿ ¿¿¿¿ ¿¿¿¿.
         continue;
       }
 
@@ -183,7 +184,7 @@ void play_board(population *pop, int (*board)[15])
       scanf("%d", &y);
       if(y == -9999)
       {
-        printf("ì¢…ë£Œí•©ë‹ˆë‹¤\n");
+        printf("¿¿¿¿¿.\n");
         break;
       }
       if(y<0 || y>14)
@@ -202,7 +203,7 @@ void play_board(population *pop, int (*board)[15])
           {
             printf("ERROR\n");
 	    printf("%d %d\n", avg_x, avg_y);
-            check = 1;//ì…ë ¥í•œ ê°’ì´ íŒ ìœ„ì— ì¡´ì¬í•œë‹¤ë©´ checkë¥¼ 2ë¡œ ì£¼ê³  ë‹¤ì‹œ ë°˜ë³µë¬¸ì„ ì‹œí–‰í•œë‹¤.
+            check = 1;//¿¿¿ ¿¿ ¿ ¿¿ ¿¿¿¿¿ ¿¿ ¿¿¿¿¿ ¿¿¿ ¿¿¿¿ ¿¿¿¿.
             break;
           }
         }
@@ -249,14 +250,14 @@ void play_board(population *pop, int (*board)[15])
 
     if(avg_x == x && avg_y == y)
     {
-      check = 1;//ì»´í“¨í„°ì˜ ê°’ê³¼ ê²¹ì¹˜ëŠ” ê²½ìš° checkë¥¼ 2ë¡œ ì£¼ë©° ë‹¤ì‹œ ë°˜ë³µë¬¸ì„ ì‹œí–‰í•œë‹¤.
+      check = 1;//¿¿¿¿¿ ¿¿¿¿ ¿¿ ¿¿¿ ¿¿ ¿¿¿¿ ¿¿ ¿¿¿¿ ¿¿ ¿¿¿¿ ¿¿¿¿.
       continue;
     }
 
     printf("%d %d\n", avg_x, avg_y);
 
-    board[avg_y][avg_x] = 'X';//ëª¨ë“  ì˜ˆì™¸ì²˜ë¦¬ê°€ ëë‚˜ë©´ boardì— ê°’ì„ ì§‘ì–´ë„£ëŠ”ë‹¤. ìƒëŒ€ì™€ ë‚˜ë¥¼ êµ¬ë¶„í•˜ê¸°ìœ„í•´Xì™€Oë¡œ ë‚˜ëˆ„ì–´ ê°’ì„ ì¤€ë‹¤.
-    board[y][x] = 'O';
+    board[avg_y][avg_x] = 'X';//¿¿ ¿¿¿¿¿ ¿¿¿ board¿ ¿¿ ¿¿ ¿¿¿.
+    board[y][x] = 'O';//¿¿¿¿¿ ¿¿¿¿ ¿¿¿¿ ¿¿¿ X¿ O¿ ¿¿¿ ¿¿¿¿.
 
 /*    printf("   ");
     for(i=0; i<15; i++)
@@ -279,7 +280,7 @@ void play_board(population *pop, int (*board)[15])
   }
 }
 
-/*êµë°°í•  ê°œì²´ ì„ íƒ*/
+/*¿¿¿ ¿¿¿ ¿¿¿¿. make : 151111*/
 individual* select_individual(population *pop)
 {
   unsigned int index1, index2;
@@ -317,4 +318,35 @@ individual* select_individual(population *pop)
   }
 }
 
+/*¿ ¿¿ ¿¿¿¿ ¿¿¿¿ ¿¿¿ ¿¿¿ ¿¿¿¿ ¿¿¿.*/
+void crossover(chromosome *old_c1, chromosome *old_c2, chromosome *new_c1, chromosome *new_c2, int bit_count)
+{
+  int i,
+      pos;
+
+//¿¿¿¿ ¿¿¿¿ ¿¿¿¿.
+  for(i=0; i<bit_count; i++)
+  {
+    new_c1[i] = old_c2[i];
+    new_c2[i] = old_c1[i];
+  }
+//¿¿¿ ¿¿¿ ¿¿¿¿.
+  pos = rand_between(0, bit_count-1);
+//¿¿ ¿¿¿ ¿¿¿¿ ¿¿¿¿.
+  new_c1[pos] = old_c1[pos];
+  new_c2[pos] = old_c2[pos];
+}
+
+/*¿ ¿¿¿ ¿¿ ¿¿ ¿¿¿¿¿ ¿¿¿¿ ¿¿¿¿.*/
+void breed(individual *old_v1, individual *old_v2, individual *new_v1, individual *new_v2, int bit_count)
+{
+  //¿¿¿¿¿.
+  crossover(old_v1->crms, old_v2->crms, new_v1->crms, new_v2->crms, bit_count);
+
+  //¿¿¿¿¿ ¿¿¿.
+  mutate(new_v1->crms, bit_count);
+  mutate(new_v2->crms, bit_count);
+}
+
 #endif
+
