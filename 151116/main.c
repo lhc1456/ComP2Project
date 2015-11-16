@@ -3,23 +3,23 @@
 main()
 {
   int i, j;
-  int pop_size = 10;//°³Ã¼ ¼ö
-  int bit_count = 2;// ¿°»öÃ¼ ºñÆ® ¼ö
-  int data_count = 2;//¿°»öÃ¼ µ¥ÀÌÅÍ ¼ö
+  int pop_size = 10;//ê°œì²´ ìˆ˜
+  int bit_count = 2;// ì—¼ìƒ‰ì²´ ë¹„íŠ¸ ìˆ˜
+  int data_count = 2;//ì—¼ìƒ‰ì²´ ë°ì´í„° ìˆ˜
 
   int sum_x = 0, sum_y = 0, avg_x, avg_y;
 
   int x, y;
-  int check = 0;//·£´ı °³Ã¼±ºÀ» »ÌÀ» °ÍÀÎÁö¿Í ¹İº¹¹®À» ºüÁ®³ª°¡±â À§ÇÑ °ª
+  int check = 0;//ëœë¤ ê°œì²´êµ°ì„ ë½‘ì„ ê²ƒì¸ì§€ì™€ ë°˜ë³µë¬¸ì„ ë¹ ì ¸ë‚˜ê°€ê¸° ìœ„í•œ ê°’
 
   int board[15][15] = {0};
 
-  population *pop = create_population(pop_size, bit_count, data_count);//°³Ã¼±º »ı¼º
+  population *pop = create_population(pop_size, bit_count, data_count);//ê°œì²´êµ° ìƒì„±
 
   play_board(pop, board);
 
   free_population(pop);
 
-  printf("¿¿¿¿ ¿¿¿¿¿...");getch();
+  printf("ì•„ë¬´í‚¤ë‚˜ ëˆ„ë¥´ì‹­ì‹œì˜¤...");getch();
 }
 
