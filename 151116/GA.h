@@ -140,7 +140,7 @@ void fitness_func(population *pop, int x, int y)
     fit = hypot(pop->ivd[i].crms[0] - x, pop->ivd[i].crms[1]);
     if(fit > 1 && fit < 1.5)
     {
-      pop->ivd[i].fitness += 0.1;
+      pop->ivd[i].fitness += 1;
     }
   }
 }
