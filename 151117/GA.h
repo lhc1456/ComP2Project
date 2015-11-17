@@ -151,7 +151,7 @@ void fitness_func(population *pop, int x, int y)
 
   for(i=0; i<pop->pop_size; i++)
   {
-    fit = hypot(pop->ivd[i].crms[0] - x, pop->ivd[i].crms[1]);
+    fit = hypot(pop->ivd[i].crms[0] - x, pop->ivd[i].crms[1] - y);
     if(fit > 1 && fit < 1.5)
     {
       pop->ivd[i].fitness += 1;
@@ -165,8 +165,7 @@ void play_board(population *pop, int (*board)[15])
   int i, j,
       x, y,
       check = 0,
-      sum_x, sum_y, avg_x, avg_y,
-      com_x, com_y,
+      com_x = 0, com_y = 0,
       gen_count = 1000;//세대 수
 
   population *tmp_pop,
@@ -222,7 +221,7 @@ void play_board(population *pop, int (*board)[15])
           if(board[y][x] == 'X' || board[y][x] == 'O')
           {
             printf("ERROR\n");
-	    printf("%d %d\n", avg_x, avg_y);
+	    printf("%d %d\n", com_x, com_y);
             check = 1;//입력한 값이 판 위에 존재한다면 check를 2로 주고 다시 반복문을 시행한다.
             break;
           }
@@ -238,7 +237,7 @@ void play_board(population *pop, int (*board)[15])
       }
     }
 
-    for(i=0; i<gen_count; i++)
+/*    for(i=0; i<gen_count; i++)
     {
       fitness_func(pop, x, y);
       
@@ -247,24 +246,35 @@ void play_board(population *pop, int (*board)[15])
       tmp_pop = pop;
       pop = new_pop;
       new_pop = tmp_pop;
+    }*/
+
+
+    fitness_func(pop, x, y);
+
+    selection(pop->ivd, pop->pop_size);
+    com_x = pop->ivd[0].crms[0];
+    com_y = pop->ivd[0].crms[1];
+
+    if(pop->ivd[0].fitness <= 5.0)
+    {
+      check = 2;
+      continue;
     }
-    
 
     for(i=0; i<pop->pop_size; i++)
     {
-      sum_x += pop->ivd[i].crms[0];
-      sum_y += pop->ivd[i].crms[1];
+      for(j=0; j<pop->bit_count; j++)
+      {
+        pop->ivd[i].fitness = 0.0;
+      }
     }
-
-    avg_x = sum_x / pop->pop_size;
-    avg_y = sum_y / pop->pop_size;
 
     for(i=0; i<15; i++)
     {
       check = 0;
       for(j=0; j<15; j++)
       {
-        if(board[avg_y][avg_x] == 'X' || board[avg_y][avg_x] == 'O')
+        if(board[com_y][com_x] == 'X' || board[com_y][com_x] == 'O')
         {
           check = 2;
           break;
@@ -280,15 +290,15 @@ void play_board(population *pop, int (*board)[15])
       continue;
     }
 
-    if(avg_x == x && avg_y == y)
+    if(com_x == x && com_y == y)
     {
       check = 1;//컴퓨터의 값과 겹치는 경우 check를 2로 주며 다시 반복문을 시행한다.
       continue;
     }
 
-    printf("%d %d\n", avg_x, avg_y);
+    printf("%d %d\n", com_x, com_y);
 
-    board[avg_y][avg_x] = 'X';//모든 예외처리가 끝나면 board에 값을 집어넣는다. 상대와 나를 구분하기위해X와O로 나누어 값을 준다.
+    board[com_y][com_x] = 'X';//모든 예외처리가 끝나면 board에 값을 집어넣는다. 상대와 나를 구분하기위해X와O로 나누어 값을 준다.
     board[y][x] = 'O';
 
 /*    printf("   ");
