@@ -27,6 +27,20 @@ typedef struct
       data_count;//염색체 내의 데이터 수
 }population;
 
+population* create_population(int pop_size, int bit_count, int data_count)
+void free_population(population *pop)
+int min(int a, int b)
+int rand_between(int a, int b)
+void rand_population(population *pop)
+void display_population(population *pop)
+void mutate(chromosome *crms, int bit_count)
+void fitness_func(population *pop, int x, int y)
+void play_board(population *pop, int (*board)[15])
+individual* select_individual(population *pop)
+void crossover(chromosome *old_c1, chromosome *old_c2, chromosome *new_c1, chromosome *new_c2, int bit_count)
+void breed(individual *old_v1, individual *old_v2, individual *new_v1, individual *new_v2, int bit_count)
+void new_generate(population *old_pop, population *new_pop)
+
 /*개체군 생성 : 메모리를 할당하고 리턴해줍니다. make : 151030*/
 population* create_population(int pop_size, int bit_count, int data_count)
 {
@@ -152,7 +166,7 @@ void play_board(population *pop, int (*board)[15])
       x, y,
       check = 0,
       sum_x, sum_y, avg_x, avg_y,
-      com_x, com_y;
+      com_x, com_y,
       gen_count = 1000;//세대 수
 
   population *tmp_pop,
