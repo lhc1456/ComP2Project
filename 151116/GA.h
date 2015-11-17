@@ -22,9 +22,9 @@ typedef struct
 typedef struct
 {
   individual *ivd;
-  int pop_size;//개체 수
-  int bit_count;//염색체의 비트 수
-  int data_count;//염색체 내의 데이터 수
+  int pop_size,//개체 수
+      bit_count,//염색체의 비트 수
+      data_count;//염색체 내의 데이터 수
 }population;
 
 /*개체군 생성 : 메모리를 할당하고 리턴해줍니다. make : 151030*/
@@ -82,8 +82,8 @@ int rand_between(int a, int b)
 /*개체들의 염색체를 랜덤하게 초기화합니다. make : 151031*/
 void rand_population(population *pop)
 {
-  int i;
-  int pos;
+  int i,
+      pos;
 
   srand(time(NULL));
 
@@ -148,10 +148,10 @@ void fitness_func(population *pop, int x, int y)
 /*플레이어와 컴퓨터가 순서대로 돌을 둔다. make : 151109*/
 void play_board(population *pop, int (*board)[15])
 {
-  int i, j;
-  int x, y;
-  int check = 0;
-  int sum_x, sum_y, avg_x, avg_y;
+  int i, j,
+      x, y,
+      check = 0,
+      sum_x, sum_y, avg_x, avg_y;
 
   while(1)
   {
