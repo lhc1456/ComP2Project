@@ -154,7 +154,7 @@ void fitness_func(population *pop, int x, int y)
   for(i=0; i<pop->pop_size; i++)
   {
     fit = hypot(pop->ivd[i].crms[0] - x, pop->ivd[i].crms[1] - y);
-    if(fit > 1 && fit < 1.5)
+    if(fit >= 1 && fit < 1.5)
     {
       pop->ivd[i].fitness += 1;
     }
@@ -196,7 +196,7 @@ void play_board(population *pop, int (*board)[15])
       if(x<0 || x>14)
       {
         printf("ERROR\n");
-        check = 2;//범위를 넘겼을 경우 check를 2로 주며 다시 반복문을 시행한다.
+        check = 1;//범위를 넘겼을 경우 check를 1로 주며 다시 반복문을 시행한다.
         continue;
       }
 
@@ -210,7 +210,7 @@ void play_board(population *pop, int (*board)[15])
       if(y<0 || y>14)
       {
         printf("ERROR\n");
-        check = 2;
+        check = 1;
         continue;
       }
 
@@ -256,7 +256,7 @@ void play_board(population *pop, int (*board)[15])
     com_x = pop->ivd[0].crms[0];
     com_y = pop->ivd[0].crms[1];
 
-    if(pop->ivd[0].fitness <= 5.0)
+    if(pop->ivd[0].fitness < 15.0)
     {
       check = 2;
       continue;
@@ -293,7 +293,7 @@ void play_board(population *pop, int (*board)[15])
 
     if(com_x == x && com_y == y)
     {
-      check = 1;//컴퓨터의 값과 겹치는 경우 check를 2로 주며 다시 반복문을 시행한다.
+      check = 2;//컴퓨터의 값과 겹치는 경우 check를 2로 주며 다시 반복문을 시행한다.
       continue;
     }
 
@@ -412,14 +412,13 @@ void swap(individual *ivd1, individual *ivd2)
 {
   individual tmp;
 
-  tmp.crms[0] = ivd1->crms[0];
-  tmp.crms[1] = ivd1->crms[1];
+  tmp.crms = ivd1->crms;
   tmp.fitness = ivd1->fitness;
-  ivd1->crms[0] = ivd2->crms[0];
-  ivd1->crms[1] = ivd2->crms[1];
+
+  ivd1->crms = ivd2->crms;
   ivd1->fitness = ivd2->fitness;
-  ivd2->crms[0] = tmp.crms[0];
-  ivd2->crms[1] = tmp.crms[1];
+
+  ivd2->crms = tmp.crms;
   ivd2->fitness = tmp.fitness;
 }
 

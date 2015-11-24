@@ -13,7 +13,7 @@ main()
 
   play_board(pop, board);//플레이!
 
-  free_population(pop);
+  free_population(pop);//메모리해제
 
   printf("아무키나 누르십시오...");getch();
 }
