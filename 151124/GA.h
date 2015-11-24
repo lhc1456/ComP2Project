@@ -407,6 +407,7 @@ void new_generate(population *old_pop, population *new_pop)
   }
 }
 
+/*1과2의 개체 내의 모든 정보를 교환한다. make : 151124*/
 void swap(individual *ivd1, individual *ivd2)
 {
   individual tmp;
@@ -422,6 +423,7 @@ void swap(individual *ivd1, individual *ivd2)
   ivd2->fitness = tmp.fitness;
 }
 
+/*정렬한다. make: 151124*/
 void selection(individual *ivd, int pop_size)
 {
   int i, j,

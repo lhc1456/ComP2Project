@@ -3,18 +3,17 @@
 main()
 {
   int i, j,
-      pop_size = 10,//¿¿ ¿
-      bit_count = 2,//¿¿¿ ¿¿ ¿¿ ¿
-      data_count = 2;//¿¿¿ ¿¿ ¿¿¿ ¿
+      pop_size = 10,//ê°œì²´ ìˆ˜
+      bit_count = 2,//ì—¼ìƒ‰ì²´ ë‚´ì˜ ë¹„íŠ¸ ìˆ˜
+      data_count = 2;//ì—¼ìƒ‰ì²´ ë‚´ì˜ ë°ì´í„° ìˆ˜
 
   int board[15][15] = {0};
 
-  population *pop = create_population(pop_size, bit_count, data_count);//¿¿¿ ¿¿
+  population *pop = create_population(pop_size, bit_count, data_count);//ê°œì²´êµ° ìƒì„±
 
-  play_board(pop, board);//¿¿¿
+  play_board(pop, board);//í”Œë ˆì´!
 
-  free_population(pop);//¿¿¿ ¿¿
+  free_population(pop);
 
-  printf("¿¿¿¿ ¿¿¿¿¿...");getch();
+  printf("ì•„ë¬´í‚¤ë‚˜ ëˆ„ë¥´ì‹­ì‹œì˜¤...");getch();
 }
-
