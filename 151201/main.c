@@ -3,7 +3,7 @@
 main()
 {
   int i, j,
-      pop_size = 10,//개체 수
+      pop_size = 1000,//개체 수
       bit_count = 2,//염색체 내의 비트 수
       data_count = 2;//염색체 내의 데이터 수
 

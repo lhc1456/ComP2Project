@@ -146,7 +146,7 @@ void mutate(chromosome *crms, int bit_count)
 }
 
 /*적응도 함수로 개체에 적응도를 더해줍니다. make : 151108, adjust : 151201*/
-void fitness_func(population *pop, int x, int y)
+void fitness_func(population *pop, int x, int y, int count)
 {
   int i;
   double fit;
@@ -257,7 +257,7 @@ void play_board(population *pop, int (*board)[15])
       selection(new_pop->ivd, pop->pop_size);
     }
 
-    fitness_func(pop, x, y);
+    fitness_func(pop, x, y, count);
 
     selection(pop->ivd, pop->pop_size);
     com_x = pop->ivd[0].crms[0];
