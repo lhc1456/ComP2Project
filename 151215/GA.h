@@ -185,7 +185,7 @@ void play_board(population *pop, int (*board)[15])
   
   while(1)
   {
-    if(check == 0)//0과 1이외의 값일때에는 염색체 값을 초기화 하지 않는다.
+    if(check == 0 || check == 2)//0이나 2이외의 값일때에는 염색체 값을 초기화 하지 않는다.
     {
       rand_population(pop);//랜덤으로 개체군의 염색체 값 초기화
     }
@@ -203,7 +203,7 @@ void play_board(population *pop, int (*board)[15])
       if(x<0 || x>14)
       {
         printf("ERROR\n");
-        check = 1;//범위를 넘겼을 경우 check를 2로 주며 다시 반복문을 시행한다.
+        check = 1;//범위를 넘겼을 경우 check를 1로 주며 다시 반복문을 시행한다.
         continue;
       }
 
@@ -230,7 +230,7 @@ void play_board(population *pop, int (*board)[15])
           {
             printf("ERROR\n");
 	          printf("%d %d\n", com_x, com_y);
-            check = 1;//입력한 값이 판 위에 존재한다면 check를 2로 주고 다시 반복문을 시행한다.
+            check = 1;//입력한 값이 판 위에 존재한다면 check를 1로 주고 다시 반복문을 시행한다.
             break;
           }
         }
