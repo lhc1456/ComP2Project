@@ -185,7 +185,7 @@ void play_board(population *pop, int (*board)[15])
   
   while(1)
   {
-    if(check == 0 || check == 2)//0이나 2이외의 값일때에는 염색체 값을 초기화 하지 않는다.
+    if(check == 0)//0이외의 값일때에는 염색체 값을 초기화 하지 않는다.
     {
       rand_population(pop);//랜덤으로 개체군의 염색체 값 초기화
     }
